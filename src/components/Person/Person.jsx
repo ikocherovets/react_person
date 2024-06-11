@@ -1,19 +1,19 @@
 export const Person = ({ person }) => {
-  const renderAge = () => {
-    if (person.age) {
-      return <p className="Person__age">I am {person.age}</p>;
-    }
+  const { name, age, sex, isMarried, partnerName } = person;
 
-    return null;
+  const MALE = 'm';
+
+  const renderAge = () => {
+    return age ? <p className="Person__age">I am {age}</p> : null;
   };
 
   const renderPartner = () => {
-    if (person.isMarried) {
-      const partnerLabel = person.sex === 'm' ? 'wife' : 'husband';
+    if (isMarried) {
+      const partnerLabel = sex === MALE ? 'wife' : 'husband';
 
       return (
         <p className="Person__partner">
-          {person.partnerName} is my {partnerLabel}
+          {partnerName} is my {partnerLabel}
         </p>
       );
     }
@@ -23,7 +23,7 @@ export const Person = ({ person }) => {
 
   return (
     <section className="Person">
-      <h2 className="Person__name">My name is {person.name}</h2>
+      <h2 className="Person__name">My name is {name}</h2>
       {renderAge()}
       {renderPartner()}
     </section>
